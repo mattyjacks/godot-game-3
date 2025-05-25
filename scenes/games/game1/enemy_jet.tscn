@@ -1,11 +1,26 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scenes/games/game1/enemy_jet.gd" id="1_8lfn7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uw6p2"]
+albedo_color = Color(0.8, 0.2, 0.2, 1.0)
+metallic = 0.7
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.6, 0.1, 0.1, 1.0)
+emission_energy_multiplier = 0.2
+
 [sub_resource type="BoxMesh" id="BoxMesh_ygpj2"]
+material = SubResource("StandardMaterial3D_uw6p2")
 size = Vector3(1, 0.2, 2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xp7v2"]
+albedo_color = Color(0.7, 0.15, 0.15, 1.0)
+metallic = 0.6
+roughness = 0.4
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_fmvdj"]
+material = SubResource("StandardMaterial3D_xp7v2")
 top_radius = 0.2
 bottom_radius = 0.2
 height = 4.0

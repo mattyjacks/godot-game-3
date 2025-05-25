@@ -16,11 +16,66 @@ func _ready():
 	# Randomize initial rotation for variety
 	rotation.y = randf_range(0, PI * 2)
 	
-	# Set up materials with random color variations for enemy jets
-	var mat = StandardMaterial3D.new()
-	mat.albedo_color = Color(0.7, 0.2, 0.2)  # Reddish for enemies
-	$JetBody.material_override = mat
-	$JetWings.material_override = mat
+	# Materials are already set in the scene
+	
+	# Set up jet particles
+	var particles = $JetParticles
+	
+	# Create particle material
+	var particle_material = ParticleProcessMaterial.new()
+	particle_material.direction = Vector3(0, 0, 1)
+	particle_material.spread = 10.0
+	particle_material.gravity = Vector3(0, 0, 0)
+	particle_material.initial_velocity_min = 1.0
+	particle_material.initial_velocity_max = 2.0
+	particle_material.color = Color(0.8, 0.2, 0.2, 1.0)
+	
+	# Create mesh for particles
+	var sphere_mesh = SphereMesh.new()
+	sphere_mesh.radius = 0.05
+	sphere_mesh.height = 0.1
+	
+	# Set up material for particle mesh
+	var sphere_material = StandardMaterial3D.new()
+	sphere_material.albedo_color = Color(0.8, 0.2, 0.2, 1.0)
+	sphere_material.emission_enabled = true
+	sphere_material.emission = Color(0.8, 0.2, 0.2, 1.0)
+	sphere_material.emission_energy_multiplier = 1.5
+	sphere_mesh.material = sphere_material
+	
+	# Apply to particles
+	particles.process_material = particle_material
+	particles.draw_pass_1 = sphere_mesh
+	particles.emitting = true
+	
+	# Set up explosion particles (not emitting yet)
+	var explosion_particles = $ExplosionParticles
+	
+	# Create explosion particle material
+	var explosion_material = ParticleProcessMaterial.new()
+	explosion_material.direction = Vector3(0, 1, 0)
+	explosion_material.spread = 180.0
+	explosion_material.gravity = Vector3(0, -1, 0)
+	explosion_material.initial_velocity_min = 3.0
+	explosion_material.initial_velocity_max = 8.0
+	explosion_material.color = Color(1.0, 0.3, 0.0, 1.0)
+	
+	# Create mesh for explosion particles
+	var explosion_mesh = SphereMesh.new()
+	explosion_mesh.radius = 0.2
+	explosion_mesh.height = 0.4
+	
+	# Set up material for explosion mesh
+	var explosion_sphere_material = StandardMaterial3D.new()
+	explosion_sphere_material.albedo_color = Color(1.0, 0.3, 0.0, 1.0)
+	explosion_sphere_material.emission_enabled = true
+	explosion_sphere_material.emission = Color(1.0, 0.3, 0.0, 1.0)
+	explosion_sphere_material.emission_energy_multiplier = 2.0
+	explosion_mesh.material = explosion_sphere_material
+	
+	# Apply to explosion particles
+	explosion_particles.process_material = explosion_material
+	explosion_particles.draw_pass_1 = explosion_mesh
 
 func _process(delta):
 	# Update time for movement patterns

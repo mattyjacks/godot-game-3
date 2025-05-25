@@ -1,8 +1,19 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scenes/games/game1/cloud.gd" id="1_m7e3c"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxd7p"]
+albedo_color = Color(1, 1, 1, 0.8)
+metallic_specular = 0.0
+roughness = 1.0
+emission_enabled = true
+emission = Color(0.8, 0.8, 0.8, 1)
+emission_energy_multiplier = 0.2
+transparency = 1
+blend_mode = 1
+
 [sub_resource type="SphereMesh" id="SphereMesh_3s5ek"]
+material = SubResource("StandardMaterial3D_jxd7p")
 radius = 1.0
 height = 2.0
 

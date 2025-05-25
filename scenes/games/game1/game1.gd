@@ -38,6 +38,12 @@ func _ready():
 	# Initialize UI
 	score_label.text = "Score: " + str(score)
 	lock_on_progress.value = 0
+	
+	# Make sure player is in the player group
+	player_jet.add_to_group("player")
+	
+	# Connect player signals
+	player_jet.connect("hit_parachute", Callable(self, "_on_player_hit_parachute"))
 
 func setup_environment():
 	# Create world environment with sky
@@ -53,22 +59,30 @@ func setup_environment():
 	sky_material.sun_angle_max = 30.0
 	sky_material.sun_curve = 0.15
 	
+	# Add sun to the sky
+	sky_material.sun_angle_max = 10.0  # Smaller angle makes the sun appear larger
+	sky_material.sun_curve = 0.05  # Sharper curve for more defined sun
+	
 	sky.sky_material = sky_material
 	environment.sky = sky
 	
 	# Add fog for distance effect
 	environment.fog_enabled = true
-	environment.fog_color = Color(0.8, 0.8, 0.9)
-	environment.fog_sun_color = Color(1.0, 0.9, 0.7)
+	environment.fog_light_color = Color(0.8, 0.8, 0.9)
+	environment.fog_light_energy = 0.3
 	environment.fog_density = 0.001
 	
-	# Set up sun rays
+	# Set up visual effects
 	environment.ssao_enabled = true
 	environment.glow_enabled = true
 	environment.glow_bloom = 0.2
 	environment.glow_hdr_threshold = 0.9
 	
 	$WorldEnvironment.environment = environment
+	
+	# Adjust directional light for better sun rays
+	$DirectionalLight3D.light_energy = 2.0
+	$DirectionalLight3D.shadow_enabled = true
 
 func setup_clouds():
 	# Create initial clouds
@@ -227,12 +241,12 @@ func _input(event):
 	# Handle touch drag for joystick
 	elif event is InputEventScreenDrag and joystick_active:
 		var drag_pos = event.position
-		var joystick_vector = (drag_pos - joystick_origin).limit_length(75)
-		current_joystick_pos = joystick_origin + joystick_vector
+		var stick_vector = (drag_pos - joystick_origin).limit_length(75)
+		current_joystick_pos = joystick_origin + stick_vector
 		joystick_handle.global_position = current_joystick_pos
 		
 		# Calculate normalized vector for player movement
-		var movement = joystick_vector / 75
+		var movement = stick_vector / 75
 		player_jet.set_movement(movement.x, -movement.y)  # Invert Y for flight controls
 
 func reset_joystick():

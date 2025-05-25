@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvb2i7qkjdg1g"]
+[gd_scene load_steps=2 format=3 uid="uid://cx75lly7h4l7s"]
 
-[ext_resource type="Script" path="res://scenes/main_menu/main_menu.gd" id="1_0lfwb"]
+[ext_resource type="Script" uid="uid://bhcw6i5p8f2fb" path="res://scenes/main_menu/main_menu.gd" id="1_0lfwb"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -45,7 +45,7 @@ horizontal_alignment = 1
 [node name="Game1Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Game 1"
+text = "Freedom Fighter Jet"
 
 [node name="Game2Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2

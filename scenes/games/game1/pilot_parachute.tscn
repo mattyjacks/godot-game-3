@@ -41,7 +41,7 @@ mesh = SubResource("CapsuleMesh_3ixrm")
 transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1, 0.5, 1)
 mesh = SubResource("CapsuleMesh_3ixrm")
 
-[node name="CollisionArea" type="Area3D" parent="."]
+[node name="CollisionArea" type="Area3D" parent="." groups=["pilots"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea"]
 shape = SubResource("SphereShape3D_uxg8c")

@@ -23,7 +23,7 @@ func _ready():
 	# Connect signal to player
 	var player = get_tree().get_nodes_in_group("player")
 	if player.size() > 0:
-		player[0].connect("hit_parachute", Callable(self, "on_hit_by_player"))
+		player[0].connect("hit_parachute", Callable(self, "explode_with_blood"))
 
 func _process(delta):
 	# Update lifetime

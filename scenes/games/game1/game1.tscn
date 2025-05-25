@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scenes/games/game1/game1.gd" id="1_ckgv3"]
 [ext_resource type="PackedScene" path="res://scenes/games/game1/player_jet.tscn" id="2_m7hnr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8w3r"]
+bg_color = Color(0.8, 0.2, 0.2, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.5, 0.5, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="FreedomFighterJet" type="Node3D"]
 script = ExtResource("1_ckgv3")
@@ -56,7 +68,7 @@ offset_right = 300.0
 offset_bottom = -50.0
 grow_vertical = 0
 
-[node name="JoystickBackground" type="TextureRect" parent="UI/ControlPanel/JoystickControl"]
+[node name="JoystickBackground" type="ColorRect" parent="UI/ControlPanel/JoystickControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,8 +81,13 @@ offset_right = 75.0
 offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.5)
+corner_radius_top_left = 75
+corner_radius_top_right = 75
+corner_radius_bottom_right = 75
+corner_radius_bottom_left = 75
 
-[node name="JoystickHandle" type="TextureRect" parent="UI/ControlPanel/JoystickControl"]
+[node name="JoystickHandle" type="ColorRect" parent="UI/ControlPanel/JoystickControl"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -83,6 +100,11 @@ offset_right = 30.0
 offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.2, 0.4, 0.8, 0.8)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="FireButton" type="Button" parent="UI/ControlPanel"]
 layout_mode = 1
@@ -97,7 +119,13 @@ offset_right = -50.0
 offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.9, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_p8w3r")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p8w3r")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_p8w3r")
 text = "FIRE"
 
 [node name="LockOnProgress" type="ProgressBar" parent="UI/ControlPanel"]

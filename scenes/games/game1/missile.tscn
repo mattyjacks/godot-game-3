@@ -1,14 +1,29 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scenes/games/game1/missile.gd" id="1_qfmvn"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uw6p2"]
+albedo_color = Color(0.8, 0.8, 0.2, 1.0)
+metallic = 0.7
+roughness = 0.3
+emission_enabled = true
+emission = Color(0.8, 0.5, 0.1, 1.0)
+emission_energy_multiplier = 1.0
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j2ypx"]
-radius = 0.1
-height = 0.8
+material = SubResource("StandardMaterial3D_uw6p2")
+radius = 0.15
+height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xp7v2"]
+albedo_color = Color(1.0, 0.5, 0.0, 1.0)
+emission_enabled = true
+emission = Color(1.0, 0.5, 0.0, 1.0)
+emission_energy_multiplier = 2.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yfnwt"]
-radius = 0.1
-height = 0.8
+radius = 0.15
+height = 1.0
 
 [node name="Missile" type="Area3D"]
 script = ExtResource("1_qfmvn")
@@ -22,11 +37,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 shape = SubResource("CapsuleShape3D_yfnwt")
 
 [node name="MissileTrail" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
-amount = 50
-lifetime = 0.5
-randomness = 0.1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+amount = 100
+lifetime = 0.8
+randomness = 0.2
 local_coords = true
 trail_enabled = true
+trail_lifetime = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

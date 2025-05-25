@@ -11,13 +11,36 @@ var current_lifetime = 0.0
 var tracking_strength = 5.0
 
 func _ready():
-	# Set up missile appearance
-	var mat = StandardMaterial3D.new()
-	mat.albedo_color = Color(0.8, 0.8, 0.2)  # Yellowish for missiles
-	$MeshInstance3D.material_override = mat
+	# Material is already set in the scene
 	
 	# Set up missile trail particles
 	var particles = $MissileTrail
+	
+	# Create particle material
+	var particle_material = ParticleProcessMaterial.new()
+	particle_material.direction = Vector3(0, 0, 1)
+	particle_material.spread = 15.0
+	particle_material.gravity = Vector3(0, 0, 0)
+	particle_material.initial_velocity_min = 1.0
+	particle_material.initial_velocity_max = 3.0
+	particle_material.color = Color(1.0, 0.5, 0.0, 1.0)
+	
+	# Create mesh for particles
+	var sphere_mesh = SphereMesh.new()
+	sphere_mesh.radius = 0.1
+	sphere_mesh.height = 0.2
+	
+	# Set up material for particle mesh
+	var sphere_material = StandardMaterial3D.new()
+	sphere_material.albedo_color = Color(1.0, 0.5, 0.0, 1.0)
+	sphere_material.emission_enabled = true
+	sphere_material.emission = Color(1.0, 0.5, 0.0, 1.0)
+	sphere_material.emission_energy_multiplier = 2.0
+	sphere_mesh.material = sphere_material
+	
+	# Apply to particles
+	particles.process_material = particle_material
+	particles.draw_pass_1 = sphere_mesh
 	particles.emitting = true
 
 func _process(delta):

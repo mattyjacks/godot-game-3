@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="godot-game-3"
+run/main_scene="uid://cx75lly7h4l7s"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

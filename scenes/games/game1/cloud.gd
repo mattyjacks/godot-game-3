@@ -5,15 +5,10 @@ var rotation_speed = 0.05
 var initial_rotation = 0.0
 
 func _ready():
-	# Set up cloud appearance
-	var cloud_mat = StandardMaterial3D.new()
-	cloud_mat.albedo_color = Color(1.0, 1.0, 1.0, 0.8)  # White fluffy clouds
-	cloud_mat.flags_transparent = true
-	cloud_mat.roughness = 1.0
-	
-	# Apply material to all cloud parts
+	# The cloud material is already set in the scene
+	# Just randomize cloud parts slightly
 	for part in $CloudParts.get_children():
-		part.material_override = cloud_mat
+		part.scale = Vector3.ONE * randf_range(0.8, 1.2)
 	
 	# Randomize initial rotation
 	initial_rotation = randf_range(0, PI * 2)
