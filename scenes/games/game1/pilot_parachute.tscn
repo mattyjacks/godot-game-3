@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/games/game1/pilot_parachute.gd" id="1_7ynkx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3ixrm"]
+radius = 0.2
+height = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_jbm7u"]
+size = Vector3(3, 0.1, 3)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uxg8c"]
+radius = 1.5
+
+[node name="PilotParachute" type="CharacterBody3D" groups=["pilots"]]
+script = ExtResource("1_7ynkx")
+
+[node name="PilotMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+mesh = SubResource("CapsuleMesh_3ixrm")
+
+[node name="ParachuteMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_jbm7u")
+
+[node name="ParachuteStrings" type="Node3D" parent="."]
+
+[node name="String1" type="MeshInstance3D" parent="ParachuteStrings"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -1, 0.5, -1)
+mesh = SubResource("CapsuleMesh_3ixrm")
+
+[node name="String2" type="MeshInstance3D" parent="ParachuteStrings"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1, 0.5, -1)
+mesh = SubResource("CapsuleMesh_3ixrm")
+
+[node name="String3" type="MeshInstance3D" parent="ParachuteStrings"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, -1, 0.5, 1)
+mesh = SubResource("CapsuleMesh_3ixrm")
+
+[node name="String4" type="MeshInstance3D" parent="ParachuteStrings"]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 0.05, 1, 0.5, 1)
+mesh = SubResource("CapsuleMesh_3ixrm")
+
+[node name="CollisionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollisionArea"]
+shape = SubResource("SphereShape3D_uxg8c")
+
+[node name="BloodParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.2
+local_coords = false
+
+[connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]

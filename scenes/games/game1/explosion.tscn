@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/games/game1/explosion.gd" id="1_5n2p8"]
+
+[node name="Explosion" type="GPUParticles3D"]
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.2
+local_coords = false
+script = ExtResource("1_5n2p8")

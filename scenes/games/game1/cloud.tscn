@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/games/game1/cloud.gd" id="1_m7e3c"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3s5ek"]
+radius = 1.0
+height = 2.0
+
+[node name="Cloud" type="Node3D"]
+script = ExtResource("1_m7e3c")
+
+[node name="CloudParts" type="Node3D" parent="."]
+
+[node name="CloudPart1" type="MeshInstance3D" parent="CloudParts"]
+mesh = SubResource("SphereMesh_3s5ek")
+
+[node name="CloudPart2" type="MeshInstance3D" parent="CloudParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, 0)
+mesh = SubResource("SphereMesh_3s5ek")
+
+[node name="CloudPart3" type="MeshInstance3D" parent="CloudParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.3, 0)
+mesh = SubResource("SphereMesh_3s5ek")
+
+[node name="CloudPart4" type="MeshInstance3D" parent="CloudParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("SphereMesh_3s5ek")
+
+[node name="CloudPart5" type="MeshInstance3D" parent="CloudParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+mesh = SubResource("SphereMesh_3s5ek")
+
+[node name="CloudPart6" type="MeshInstance3D" parent="CloudParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+mesh = SubResource("SphereMesh_3s5ek")

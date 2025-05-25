@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/games/game1/enemy_jet.gd" id="1_8lfn7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ygpj2"]
+size = Vector3(1, 0.2, 2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_fmvdj"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 4.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqxn7"]
+size = Vector3(1, 0.2, 2)
+
+[node name="EnemyJet" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_8lfn7")
+
+[node name="JetBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ygpj2")
+surface_material_override/0 = null
+
+[node name="JetWings" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_fmvdj")
+surface_material_override/0 = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iqxn7")
+
+[node name="JetParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+amount = 30
+lifetime = 0.5
+randomness = 0.2
+local_coords = true
+trail_enabled = true
+
+[node name="ExplosionParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 100
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.9
+randomness = 0.2
+local_coords = false

@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/games/game1/player_jet.gd" id="1_ixp8h"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3vwi2"]
+size = Vector3(1, 0.2, 3)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ug4ow"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iqxn7"]
+size = Vector3(1, 0.2, 3)
+
+[node name="PlayerJet" type="CharacterBody3D"]
+script = ExtResource("1_ixp8h")
+
+[node name="JetBody" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3vwi2")
+
+[node name="JetWings" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_ug4ow")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_iqxn7")
+
+[node name="MissileSpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="JetParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+amount = 50
+lifetime = 0.5
+randomness = 0.2
+local_coords = true
+trail_enabled = true
