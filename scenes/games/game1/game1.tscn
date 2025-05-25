@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://b5hwxu7ddda7x"]
 
-[ext_resource type="Script" path="res://scenes/games/game1/game1.gd" id="1_ckgv3"]
+[ext_resource type="Script" uid="uid://dt5kwewikvs7w" path="res://scenes/games/game1/game1.gd" id="1_ckgv3"]
 [ext_resource type="PackedScene" path="res://scenes/games/game1/player_jet.tscn" id="2_m7hnr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8w3r"]
@@ -27,11 +27,11 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 5, 8)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 11.7234, 3.99774)
 current = true
 
 [node name="PlayerJet" parent="." instance=ExtResource("2_m7hnr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.11665, -7.62471)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 3.0
@@ -82,10 +82,6 @@ offset_bottom = 75.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2, 0.2, 0.2, 0.5)
-corner_radius_top_left = 75
-corner_radius_top_right = 75
-corner_radius_bottom_right = 75
-corner_radius_bottom_left = 75
 
 [node name="JoystickHandle" type="ColorRect" parent="UI/ControlPanel/JoystickControl"]
 layout_mode = 1
@@ -101,10 +97,6 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.2, 0.4, 0.8, 0.8)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
 
 [node name="FireButton" type="Button" parent="UI/ControlPanel"]
 layout_mode = 1
@@ -119,13 +111,13 @@ offset_right = -50.0
 offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_hover_color = Color(1, 0.9, 0.9, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_colors/font_hover_color = Color(1, 0.9, 0.9, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_p8w3r")
 theme_override_styles/hover = SubResource("StyleBoxFlat_p8w3r")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_p8w3r")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p8w3r")
 text = "FIRE"
 
 [node name="LockOnProgress" type="ProgressBar" parent="UI/ControlPanel"]
@@ -140,7 +132,6 @@ offset_right = 100.0
 offset_bottom = 80.0
 grow_horizontal = 2
 max_value = 1.0
-step = 0.01
 show_percentage = false
 
 [node name="GameTitle" type="Label" parent="UI/ControlPanel"]
