@@ -73,7 +73,7 @@ func setup_environment():
 	environment.fog_density = 0.001
 	
 	# Set up visual effects
-	environment.ssao_enabled = true
+	# Note: SSAO requires Forward+ renderer, so we'll use just glow effects
 	environment.glow_enabled = true
 	environment.glow_bloom = 0.2
 	environment.glow_hdr_threshold = 0.9
@@ -125,14 +125,8 @@ func spawn_mountain(is_initial = false):
 	mountain_instance.scale = Vector3.ONE * randf_range(10, 20)
 
 func setup_touch_controls():
-	# Set up joystick visuals
-	var joystick_bg_texture = CircleShape2D.new()
-	joystick_bg_texture.radius = 75
-	joystick_background.texture = joystick_bg_texture
-	
-	var joystick_handle_texture = CircleShape2D.new()
-	joystick_handle_texture.radius = 30
-	joystick_handle.texture = joystick_handle_texture
+	# No need to set textures for ColorRect controls
+	# Just make sure they have the right size and appearance
 	
 	# Reset joystick position
 	joystick_origin = joystick_background.global_position
